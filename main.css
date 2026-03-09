@@ -1,0 +1,34 @@
+* {
+	font-family: "Sora", sans-serif;
+}
+:root {
+	--neutral900: #121212;
+	--neutral800: #262626;
+	--neutral500: #717178;
+	--neutral400: #949497;
+	--neutral000: #ffffff;
+	--blue600: #177dff;
+	--blue400: #4ca6ff;
+	--red500: #d64d5b;
+	--green500: #4dd67b;
+	--yellow400: #f4dc73;
+}
+h2 {
+	font-weight: 700;
+	font-style: Bold;
+	font-size: 24px;
+	line-height: 100%;
+	letter-spacing: 0%;
+	text-align: center;
+	color: var(--neutral000);
+}
+.button-black {
+	color: var(--neutral000);
+	font-weight: 400;
+	line-height: 120%;
+	letter-spacing: -0.48px;
+	background-color: var(--neutral900);
+	border: 1px solid var(--colors-neutral-500, #717178);
+	padding: 12px;
+	border-radius: 12px;
+}

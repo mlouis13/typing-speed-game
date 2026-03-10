@@ -529,15 +529,16 @@ const difficile = [
 	"multidimensionnel",
 ];
 const dialog = document.querySelector("dialog");
-document.addEventListener("DOMContentLoaded", () => {
-	dialog.showModal();
-});
 const easy = document.querySelector("#Easy");
 const medium = document.querySelector("#Medium");
 const hard = document.querySelector("#Hard");
 let tableau = [];
 const placeholder = document.querySelector("#placeholder");
 let isClicked = false;
+const start = document.querySelector("#start");
+start.addEventListener("click", () => {
+	dialog.close();
+});
 easy.addEventListener("click", () => {
 	easy.style.color = "#4ca6ff";
 	easy.style.border = "1px solid #4ca6ff";

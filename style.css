@@ -63,7 +63,6 @@ main {
 	border: none;
 	width: 100%;
 	color: white;
-	font-family: var(--sora);
 	font-weight: 400;
 	font-size: 32px;
 	line-height: 136%;
@@ -80,7 +79,6 @@ main {
 	border: none;
 	width: 100%;
 	color: var(--neutral500);
-	font-family: var(--sora);
 	font-weight: 400;
 	font-size: 32px;
 	line-height: 136%;
@@ -105,11 +103,9 @@ dialog {
 	z-index: 3;
 	border: none;
 	left: -12px;
+	height: 100%;
 }
-dialog::backdrop {
-	width: 0%;
-	height: 0%;
-}
+
 .ptitdialog {
 	height: 100%;
 	width: 100%;
@@ -117,7 +113,16 @@ dialog::backdrop {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 12px;
 }
 .typing {
 	padding: 24px;
+}
+.neuille {
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 120%;
+	letter-spacing: -0.3px;
+	text-align: center;
+	color: var(--neutral000);
 }

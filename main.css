@@ -32,3 +32,15 @@ h2 {
 	padding: 12px;
 	border-radius: 12px;
 }
+.button-blue {
+	color: var(--neutral000);
+	background-color: var(--blue600);
+	padding: 12px;
+	border-radius: 12px;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 120%;
+	letter-spacing: -0.3px;
+	text-align: center;
+	border: none;
+}

@@ -528,9 +528,16 @@ const difficile = [
 	"transdisciplinarite",
 	"multidimensionnel",
 ];
+const dialog = document.querySelector("dialog");
+document.addEventListener("DOMContentLoaded", () => {
+	dialog.showModal();
+});
 const easy = document.querySelector("#Easy");
 const medium = document.querySelector("#Medium");
 const hard = document.querySelector("#Hard");
+let tableau = [];
+const placeholder = document.querySelector("#placeholder");
+let isClicked = false;
 easy.addEventListener("click", () => {
 	easy.style.color = "#4ca6ff";
 	easy.style.border = "1px solid #4ca6ff";
@@ -538,6 +545,19 @@ easy.addEventListener("click", () => {
 	medium.style.border = "1px solid #717178";
 	hard.style.color = "#FFFFFF";
 	hard.style.border = "1px solid #717178";
+
+	if (isClicked == false)
+		for (let i = 0; i < 80; i++) {
+			const random = Math.round(Math.random() * facile.length);
+			tableau.push(facile[random]);
+			const newSpan = document.createElement("span");
+			newSpan.textContent = facile[random] + " ";
+			placeholder.appendChild(newSpan);
+			// if (placeholder.value == ) {
+			// 	console.log("lol");
+			// }
+		}
+	isClicked = true;
 });
 medium.addEventListener("click", () => {
 	medium.style.color = "#4ca6ff";
@@ -546,6 +566,17 @@ medium.addEventListener("click", () => {
 	easy.style.border = "1px solid #717178";
 	hard.style.color = "#FFFFFF";
 	hard.style.border = "1px solid #717178";
+	if (isClicked == false) {
+		for (let i = 0; i < 80; i++) {
+			const random = Math.round(Math.random() * moyen.length);
+			tableau.push(moyen[random]);
+
+			const newSpan = document.createElement("span");
+			newSpan.textContent = moyen[random] + " ";
+			placeholder.appendChild(newSpan);
+		}
+	}
+	isClicked = true;
 });
 hard.addEventListener("click", () => {
 	hard.style.color = "#4ca6ff";
@@ -554,4 +585,15 @@ hard.addEventListener("click", () => {
 	medium.style.border = "1px solid #717178";
 	easy.style.color = "#FFFFFF";
 	easy.style.border = "1px solid #717178";
+	difficulty = "hard";
+	if (isClicked == false) {
+		for (let i = 0; i < 80; i++) {
+			const random = Math.round(Math.random() * difficile.length);
+			tableau.push(difficile[random]);
+
+			const newSpan = document.createElement("span");
+			newSpan.textContent = difficile[random] + " ";
+			placeholder.appendChild(newSpan);
+		}
+	}
 });

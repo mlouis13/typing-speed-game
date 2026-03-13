@@ -541,9 +541,13 @@ const wpm = document.querySelector("#wpm");
 const accuracy = document.querySelector("#accuracy");
 const restart = document.querySelector("#restart");
 const typing = document.querySelector("#typing");
+const SpanRemove = document.querySelector("#span-remove");
+const DialogStart = document.querySelector("#dialog-start");
 time.textContent = 60;
 
 start.addEventListener("click", () => {
+	SpanRemove.remove();
+	DialogStart.close();
 	dialog.close();
 	time.style.color = "#f4dc73";
 	accuracy.style.color = "#d64d5b";
@@ -626,4 +630,5 @@ hard.addEventListener("click", () => {
 			placeholder.appendChild(newSpan);
 		}
 	}
+	isClicked = true;
 });

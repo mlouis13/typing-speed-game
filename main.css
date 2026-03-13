@@ -44,3 +44,15 @@ h2 {
 	text-align: center;
 	border: none;
 }
+.button-gray {
+	background-color: var(--neutral800);
+	padding: 12px;
+	border-radius: 12px;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 120%;
+	letter-spacing: -0.3px;
+	text-align: center;
+	border: none;
+	color: var(--neutral000);
+}

@@ -67,7 +67,6 @@ main {
 	font-size: 32px;
 	line-height: 136%;
 	letter-spacing: 0.4px;
-	height: 55vh;
 	padding: 0px;
 	caret-color: white;
 }
@@ -83,7 +82,6 @@ main {
 	font-size: 32px;
 	line-height: 136%;
 	letter-spacing: 0.4px;
-	height: 55vh;
 }
 .placeholder::after {
 	z-index: 1;
@@ -125,4 +123,9 @@ dialog {
 	letter-spacing: -0.3px;
 	text-align: center;
 	color: var(--neutral000);
+}
+.restart {
+	display: flex;
+	justify-content: center;
+	padding: 34px 0px;
 }

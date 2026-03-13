@@ -3,17 +3,11 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
 		<link rel="stylesheet" href="normalize.css" />
 		<link rel="stylesheet" href="reset.css" />
 		<link rel="stylesheet" href="main.css" />
-		<link rel="stylesheet" href="style.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Chango&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=League+Spartan:wght@100..900&family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap"
-			rel="stylesheet"
-		/>
+		<link rel="stylesheet" href="result.css" />
+		<title>Document</title>
 	</head>
 	<body>
 		<header>
@@ -61,44 +55,5 @@
 				<p class="best">Best: <span class="record" id="record">92 WPM</span></p>
 			</div>
 		</header>
-		<main>
-			<section class="information">
-				<article class="result">
-					<div class="info">
-						<p class="best">WPM:</p>
-						<h2 id="wpm">0</h2>
-					</div>
-					<hr class="hrduhaut" />
-					<div class="info">
-						<p class="best">ACCURACY:</p>
-						<h2 id="accuracy">0</h2>
-					</div>
-					<hr class="hrduhaut" />
-					<div class="info">
-						<p class="best">TIME:</p>
-						<h2 id="time">0</h2>
-					</div>
-				</article>
-				<article class="difficulty">
-					<p class="best">Difficulty:</p>
-					<button class="button-black" id="Easy">Easy</button
-					><button class="button-black" id="Medium">Medium</button
-					><button class="button-black" id="Hard">Hard</button>
-				</article>
-			</section>
-			<section class="typing" id="typing">
-				<dialog open>
-					<article class="ptitdialog">
-						<button id="start" class="button-blue">Start Typing Test</button>
-						<p class="neuille">Or click the text and start typing</p>
-					</article>
-				</dialog>
-				<div class="placeholder" id="placeholder">
-					<div id="textarea" contenteditable="true"></div>
-				</div>
-			</section>
-			<section class="restart" id="restart"></section>
-		</main>
-		<script src="app.js"></script>
 	</body>
 </html>

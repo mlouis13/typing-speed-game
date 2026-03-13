@@ -1,0 +1,14 @@
+body {
+	background-color: var(--neutral900);
+	padding: 24px;
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.recordwpm {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}

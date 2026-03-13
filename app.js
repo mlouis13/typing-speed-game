@@ -536,9 +536,38 @@ let tableau = [];
 const placeholder = document.querySelector("#placeholder");
 let isClicked = false;
 const start = document.querySelector("#start");
+const time = document.querySelector("#time");
+const wpm = document.querySelector("#wpm");
+const accuracy = document.querySelector("#accuracy");
+const restart = document.querySelector("#restart");
+const typing = document.querySelector("#typing");
+time.textContent = 60;
+
 start.addEventListener("click", () => {
 	dialog.close();
+	time.style.color = "#f4dc73";
+	accuracy.style.color = "#d64d5b";
+	const newBtn = document.createElement("button");
+	newBtn.classList.add("button-gray");
+	newBtn.classList.add("restart2");
+	restart.appendChild(newBtn);
+	newBtn.textContent = "Restart Test";
+	typing.style.borderBottom = "1px solid #3a3a3a";
+	const restart2 = document.querySelector(".restart2");
+
+	const timer = setInterval(() => {
+		time.textContent = parseInt(time.textContent) - 1;
+
+		if (parseInt(time.textContent) === 0) {
+			clearInterval(timer);
+			window.location.href = "result.html";
+		}
+	}, 1000);
+	restart2.addEventListener("click", () => {
+		window.location.href = "index.html";
+	});
 });
+
 easy.addEventListener("click", () => {
 	easy.style.color = "#4ca6ff";
 	easy.style.border = "1px solid #4ca6ff";

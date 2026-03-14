@@ -91,4 +91,5 @@ h3 {
   padding: 12px;
   border-radius: 12px;
   border: none;
+  z-index: 1;
 }

@@ -1,6 +1,9 @@
 body {
   background-color: var(--neutral900);
   padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 header {
   display: flex;
@@ -20,9 +23,16 @@ header {
 }
 .firstsection {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 }
+
 .absolute {
   position: absolute;
+  top: 20px;
+  left: 5px;
 }
 .best {
   font-weight: 400;
@@ -32,4 +42,43 @@ header {
 }
 .record {
   color: var(--neutral000);
+}
+.info {
+  border: 1px solid var(--colors-neutral-700, #3a3a3a);
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+}
+.secondsection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.white {
+  color: var(--neutral000);
+}
+.red {
+  color: var(--red500);
+}
+.green {
+  color: var(--green500);
+}
+.gray {
+  color: var(--neutral400);
+}
+.lastsection {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+.absolute2 {
+  position: absolute;
+  top: 180px;
+  right: 40px;
 }

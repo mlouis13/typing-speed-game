@@ -183,8 +183,6 @@ const wordLevels = {
     "lave",
     "seche",
     "plie",
-    "ouvre",
-    "ferme",
   ],
   medium: [
     "maison",
@@ -268,13 +266,11 @@ const wordLevels = {
     "connexion",
     "securite",
     "identifiant",
-    "motdepasse",
     "interface",
     "utilisateur",
     "parametre",
     "configuration",
     "installation",
-    "miseajour",
     "version",
     "prototype",
     "conception",
@@ -352,12 +348,10 @@ const wordLevels = {
     "tourisme",
     "aventure",
     "exploration",
-    "experience",
     "souvenir",
     "emotion",
     "sensation",
     "impression",
-    "reaction",
     "adaptation",
     "transformation",
     "evolution",
@@ -394,10 +388,8 @@ const wordLevels = {
     "algorithmique",
     "programmation",
     "compilation",
-    "interoperabilite",
     "compatibilite",
     "virtualisation",
-    "containerisation",
     "automatisation",
     "orchestration",
     "distribution",
@@ -421,24 +413,15 @@ const wordLevels = {
     "innovation",
     "technologique",
     "scientifique",
-    "experimentateur",
-    "interpretatif",
-    "comparatif",
     "demonstration",
-    "illustration",
     "argumentation",
-    "problematique",
-    "hypothese",
     "methodologie",
     "statistique",
     "probabilite",
     "modelisation",
     "simulation",
-    "analyseur",
-    "predictif",
     "correlation",
     "causalite",
-    "observationnel",
     "phenomenologie",
     "neuroscience",
     "biologie",
@@ -459,78 +442,41 @@ const wordLevels = {
     "cosmologie",
     "gravitation",
     "relativite",
-    "quantification",
     "electromagnetisme",
     "thermodynamique",
-    "cristallisation",
-    "polymerisation",
     "nanotechnologie",
     "cybersecurite",
     "cryptographie",
-    "authentificateur",
     "certification",
     "normalisation",
-    "standardisation",
     "industrialisation",
     "commercialisation",
-    "internationalisation",
-    "regionalisation",
     "urbanisation",
     "modernisation",
     "numerisation",
     "digitalisation",
     "interconnexion",
-    "interdependance",
-    "globalisation",
     "diversification",
     "specialisation",
-    "professionnalisation",
-    "responsabilisation",
-    "conscientisation",
-    "sensibilisation",
-    "contextualisation",
-    "conceptualisation",
-    "operationalisation",
-    "institutionnalisation",
     "legislation",
-    "reglementation",
-    "administratif",
-    "bureaucratique",
-    "juridictionnel",
-    "constitutionnel",
-    "parlementaire",
-    "gouvernemental",
     "diplomatique",
     "geopolitique",
     "democratique",
-    "participatif",
-    "consultatif",
     "deliberation",
     "negociation",
     "arbitrage",
-    "conciliation",
-    "mediation",
-    "resolution",
-    "interpretation",
-    "argumentatif",
-    "persuasion",
-    "rhetorique",
     "philosophique",
     "epistemologie",
     "metaphysique",
-    "ontologie",
-    "ethique",
     "dialectique",
-    "hermeneutique",
-    "existentialisme",
+    "rhetorique",
     "structuralisme",
-    "postmodernisme",
-    "interdisciplinarite",
-    "transdisciplinarite",
     "multidimensionnel",
   ],
 };
 
+const wpmDisplay = document.querySelector("#wpm");
+const accuracyDisplay = document.querySelector("#accuracy");
 const dialog = document.querySelector("dialog");
 const dialogStart = document.querySelector("#dialog-start");
 const btnEasy = document.querySelector("#Easy");
@@ -539,7 +485,6 @@ const btnHard = document.querySelector("#Hard");
 const placeholder = document.querySelector("#placeholder");
 const btnStart = document.querySelector("#start");
 const timeDisplay = document.querySelector("#time");
-const accuracy = document.querySelector("#accuracy");
 const restartSection = document.querySelector("#restart");
 const spanRemove = document.querySelector("#span-remove");
 
@@ -567,6 +512,9 @@ let wordList = [],
   timer = null,
   started = false,
   restartBtn = null;
+let correctWords = 0,
+  totalWords = 0,
+  elapsedSeconds = 0;
 
 timeDisplay.textContent = DURATION;
 
@@ -574,6 +522,8 @@ function buildWords(arr) {
   placeholder.querySelectorAll(".word").forEach((w) => w.remove());
   wordList = [];
   wordIndex = 0;
+  correctWords = 0;
+  totalWords = 0;
   const frag = document.createDocumentFragment();
   for (let i = 0; i < 80; i++) {
     const word = arr[Math.floor(Math.random() * arr.length)];
@@ -632,6 +582,25 @@ btnMedium.addEventListener("click", () =>
 );
 btnHard.addEventListener("click", () => pickLevel(wordLevels.hard, btnHard));
 
+function updateWpm() {
+  if (elapsedSeconds === 0) return;
+  const minutes = elapsedSeconds / 60;
+  const currentWpm = Math.round(correctWords / minutes);
+  wpmDisplay.textContent = currentWpm;
+}
+
+function updateAccuracy() {
+  if (totalWords === 0) return;
+  const acc = Math.round((correctWords / totalWords) * 100);
+  accuracyDisplay.textContent = acc + "%";
+}
+
+function isWordCorrect() {
+  const typed = input.value;
+  const word = wordList[wordIndex];
+  return typed === word;
+}
+
 function launch() {
   if (started) return;
   if (!level) pickLevel(wordLevels.easy, btnEasy);
@@ -639,7 +608,7 @@ function launch() {
   if (dialogStart) dialogStart.close();
   if (dialog) dialog.close();
   timeDisplay.style.color = "#f4dc73";
-  if (accuracy) accuracy.style.color = "#d64d5b";
+  if (accuracyDisplay) accuracyDisplay.style.color = "#d64d5b";
   if (!restartBtn) {
     restartBtn = document.createElement("button");
     restartBtn.classList.add("button-gray", "restart2");
@@ -665,12 +634,17 @@ document.addEventListener("click", () => {
 
 function startTimer() {
   timeDisplay.textContent = DURATION;
+  elapsedSeconds = 0;
   clearInterval(timer);
   timer = setInterval(() => {
-    const t = parseInt(timeDisplay.textContent) - 1;
+    elapsedSeconds++;
+    const t = DURATION - elapsedSeconds;
     timeDisplay.textContent = t;
+    updateWpm();
     if (t <= 0) {
       clearInterval(timer);
+      localStorage.setItem("wpm", wpmDisplay.textContent);
+      localStorage.setItem("accuracy", accuracyDisplay.textContent);
       window.location.href = "result3.html";
     }
   }, 1000);
@@ -680,6 +654,11 @@ function reset() {
   clearInterval(timer);
   started = false;
   input.value = "";
+  correctWords = 0;
+  totalWords = 0;
+  elapsedSeconds = 0;
+  wpmDisplay.textContent = "0";
+  accuracyDisplay.textContent = "0";
   buildWords(level || wordLevels.easy);
   started = true;
   input.focus();
@@ -705,6 +684,9 @@ input.addEventListener("keydown", (e) => {
   if (!started) return;
   if (e.key === " ") {
     e.preventDefault();
+    totalWords++;
+    if (isWordCorrect()) correctWords++;
+    updateAccuracy();
     input.value = "";
     wordIndex++;
     markCurrentWord();
